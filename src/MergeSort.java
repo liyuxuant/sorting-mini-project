@@ -1,9 +1,10 @@
 import java.util.Comparator;
+import java.util.Arrays;
 
 /**
  * Sort using merge sort.
  *
- * @author Your Name Here
+ * @author Yuxuan Li
  */
 
 public class MergeSort implements Sorter {
