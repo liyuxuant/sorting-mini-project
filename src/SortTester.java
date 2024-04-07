@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests of Sorter objects.
  *
- * @author Your Name
+ * @author Yuxuan Li
  */
 public class SortTester {
 
@@ -45,4 +45,43 @@ public class SortTester {
     assertArrayEquals(original, expected);
   } // orderedStringTest
 
+  @Test
+  public void ascendingOrderTest() {
+      String[] original = { "echo", "alpha", "delta", "bravo", "charlie" };
+      String[] expected = { "alpha", "bravo", "charlie", "delta", "echo" };
+      sorter.sort(original, (x, y) -> x.compareTo(y));
+      assertArrayEquals(expected, original);
+  }
+
+  @Test
+  public void descendingOrderTest() {
+      String[] original = { "alpha", "bravo", "charlie", "delta", "echo" };
+      String[] expected = { "echo", "delta", "charlie", "bravo", "alpha" };
+      sorter.sort(original, (x, y) -> y.compareTo(x));
+      assertArrayEquals(expected, original);
+  }
+
+  @Test
+  public void duplicatesTest() {
+      String[] original = { "delta", "alpha", "echo", "alpha", "delta" };
+      String[] expected = { "alpha", "alpha", "delta", "delta", "echo" };
+      sorter.sort(original, (x, y) -> x.compareTo(y));
+      assertArrayEquals(expected, original);
+  }
+
+  @Test
+  public void emptyStringsTest() {
+      String[] original = { "bravo", "", "delta", "", "alpha" };
+      String[] expected = { "", "", "alpha", "bravo", "delta" };
+      sorter.sort(original, (x, y) -> x.compareTo(y));
+      assertArrayEquals(expected, original);
+  }
+
+  @Test
+  public void allEqualElementsTest() {
+      String[] original = { "alpha", "alpha", "alpha", "alpha", "alpha" };
+      String[] expected = { "alpha", "alpha", "alpha", "alpha", "alpha" };
+      sorter.sort(original, (x, y) -> x.compareTo(y));
+      assertArrayEquals(expected, original);
+  }
 } // class SortTester
